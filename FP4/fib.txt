@@ -1,0 +1,33 @@
+FIB 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15, #array initialized to dummy values
+
+.begin
+
+:d <= :0 add :0     # :d is our counter register
+:a <= :0 add 0      # start fib sequence with 0 and 1
+:b <= :0 add 1
+
+FIBBEGIN
+:e <= :0 add FIB
+:e <= :e add :d     # :e is now the :dth location in FIB
+:b sw :e            # store :b at location :e in FIB
+
+:c <= :a add :b     # :c = :a + :b
+:a <= :0 add :b     # :a = :b 
+:b <= :0 add :c     # :b = :c
+:d <= :d add 1      # :d + 1
+:? <= :d sub 16     # :d -16
+bz <= END  
+j <= FIBBEGIN       # jump back to beginning of function
+                    #FIB will now contain the first 16 iterations of the fibonacci sequence
+END
+
+[A] la FIB          # array A contains all values in FIB
+:a <= :0 add 2
+:b <= :0 add 1
+[B] <= [A] shl :a   # multiply by 4 and store in array B
+[B] <= [B] add [A]  # multiply by 1 more (total 5)
+[A] <= [B] shl :b    # multiply by 2 (total 10)
+
+[A] sa FIB          #stores values in A back in FIB
+
+

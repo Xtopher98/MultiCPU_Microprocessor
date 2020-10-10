@@ -1,0 +1,19 @@
+#########
+#Exclude all
+#########
+*
+!.gitignore
+!*.vhd
+!*.xdc
+!*.sh
+!*.tcl
+!*.md
+!sim_testbench
+!sim_testbench/*.vhd
+!img
+!img/*.png
+!*.dat
+!test.s
+!*.pdf
+!FP*
+!FP*/**

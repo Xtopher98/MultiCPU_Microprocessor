@@ -1,0 +1,16 @@
+FOO 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16
+
+.begin
+
+:a <= :0 add 10 # register a is equal to 10
+:b <= :0 add 8 # register b is equal to 8
+:c <= :0 add 4 # register c is equl to 4 
+:b <= :a sub :c # register b = a-c = 6
+:d <= :b sub 2 # register d = b-2=4
+:a <= :b shl :d #shift left into reg a 
+:b <= :c shr :a # shift right into reg b 
+next <= :d,:a,bn  # jump if msb is 1
+[B] la FOO
+[A] <= [B] add :a
+j <= END
+END
